@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { ChatMessage, ToolCallInfo } from "@/types/ai";
+import type { ChatMessage, InlineChatChart, ToolCallInfo } from "@/types/ai";
 
 interface ChatState {
   messages: ChatMessage[];
@@ -10,7 +10,7 @@ interface ChatState {
   addUserMessage: (content: string) => string;
   addAssistantMessage: () => string;
   appendToAssistant: (id: string, text: string) => void;
-  addChartToAssistant: (id: string, chart: ChatMessage["charts"][0]) => void;
+  addChartToAssistant: (id: string, chart: InlineChatChart) => void;
   setSuggestions: (id: string, suggestions: string[]) => void;
   addToolCall: (id: string, tool: ToolCallInfo) => void;
   updateToolCall: (id: string, toolName: string, status: ToolCallInfo["status"]) => void;

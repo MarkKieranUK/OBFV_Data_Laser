@@ -107,6 +107,8 @@ export function InlineChart({ chart }: { chart: InlineChatChart }) {
   const ChartComponent = {
     bar: Bar,
     horizontalBar: Bar,
+    groupedBar: Bar,
+    stackedBar: Bar,
     line: Line,
     pie: Pie,
     doughnut: Doughnut,
@@ -118,6 +120,15 @@ export function InlineChart({ chart }: { chart: InlineChatChart }) {
       ? PIE_OPTIONS
       : chart.type === "horizontalBar"
       ? { ...MINI_OPTIONS, indexAxis: "y" as const }
+      : chart.type === "stackedBar"
+      ? {
+          ...MINI_OPTIONS,
+          scales: {
+            ...MINI_OPTIONS.scales,
+            x: { ...MINI_OPTIONS.scales.x, stacked: true },
+            y: { ...MINI_OPTIONS.scales.y, stacked: true },
+          },
+        }
       : MINI_OPTIONS;
 
   return (

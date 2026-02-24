@@ -130,7 +130,7 @@ export function useChat() {
           .messages.find((m) => m.id === assistantId);
         if (finalMsg) {
           const sugMatch = finalMsg.content.match(
-            /<suggestions>\s*(\[.*?\])\s*<\/suggestions>/s
+            /<suggestions>\s*([\s\S]*?)\s*<\/suggestions>/
           );
           if (sugMatch) {
             try {
