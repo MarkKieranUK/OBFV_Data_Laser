@@ -14,6 +14,7 @@ import { ChartBuilderSection } from "@/components/analysis/chart-builder-section
 import { CrossTabSection } from "@/components/analysis/cross-tab-section";
 import { SummaryStatsSection } from "@/components/analysis/summary-stats-section";
 import { GroupBySection } from "@/components/analysis/group-by-section";
+import { ChatPanel } from "@/components/chat/chat-panel";
 
 const SECTION_COMPONENTS = {
   overview: OverviewSection,
@@ -47,6 +48,7 @@ export default function DashboardPage() {
         <main className="flex-1 overflow-auto p-6">
           <ActiveComponent />
         </main>
+        <ChatPanel />
       </div>
     </div>
   );

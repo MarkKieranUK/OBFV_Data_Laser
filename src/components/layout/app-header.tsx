@@ -1,11 +1,12 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Zap, Upload, PanelLeftClose, PanelLeft } from "lucide-react";
+import { Zap, Upload, PanelLeftClose, PanelLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useDatasetStore } from "@/stores/dataset-store";
 import { useUIStore } from "@/stores/ui-store";
+import { useChatStore } from "@/stores/chat-store";
 
 export function AppHeader() {
   const router = useRouter();
@@ -15,6 +16,8 @@ export function AppHeader() {
   const clearDataset = useDatasetStore((s) => s.clearDataset);
   const sidebarOpen = useUIStore((s) => s.sidebarOpen);
   const toggleSidebar = useUIStore((s) => s.toggleSidebar);
+  const toggleChat = useChatStore((s) => s.toggleOpen);
+  const chatOpen = useChatStore((s) => s.isOpen);
 
   const handleNewUpload = () => {
     clearDataset();
@@ -58,10 +61,21 @@ export function AppHeader() {
         )}
       </div>
 
-      <Button variant="outline" size="sm" onClick={handleNewUpload}>
-        <Upload className="mr-1.5 h-3.5 w-3.5" />
-        New Upload
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button
+          variant={chatOpen ? "default" : "outline"}
+          size="sm"
+          onClick={toggleChat}
+          className={chatOpen ? "bg-accent-blue hover:bg-accent-blue/80" : ""}
+        >
+          <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+          AI Analyst
+        </Button>
+        <Button variant="outline" size="sm" onClick={handleNewUpload}>
+          <Upload className="mr-1.5 h-3.5 w-3.5" />
+          New Upload
+        </Button>
+      </div>
     </header>
   );
 }
